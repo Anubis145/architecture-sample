@@ -75,3 +75,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize" }
 
+[bundles]
+compose-destinations = ["compose-destinations-core", "compose-destinations-bottom-sheet"]
