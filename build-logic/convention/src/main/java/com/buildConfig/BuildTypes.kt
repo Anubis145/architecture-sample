@@ -17,6 +17,22 @@ fun CommonExtension<*, *, *, *, *, *>.configureProductFlavors() {
     }
 }
 
+fun ApplicationExtension.configureBuildType() {
+    buildTypes {
+        getByName(AppEnvironment.DEBUG.value) {
+            signingConfig = signingConfigs.getByName(AppEnvironment.DEBUG.value)
+        }
+
+        getByName(AppEnvironment.RELEASE.value) {
+            signingConfig = signingConfigs.getByName(AppEnvironment.RELEASE.value)
+            isMinifyEnabled = true
+            isShrinkResources = true
+        }
+
+        all {  }
+    }
+}
+
 fun ApplicationExtension.configureAppSuffix() {
     productFlavors {
         named(AppEnvironment.DEV.value) {
@@ -27,5 +43,6 @@ fun ApplicationExtension.configureAppSuffix() {
             versionNameSuffix = "-qa"
             applicationIdSuffix = ".qa"
         }
+        named(AppEnvironment.PROD.value) {  }
     }
 }
