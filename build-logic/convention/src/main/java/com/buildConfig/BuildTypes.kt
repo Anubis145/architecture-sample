@@ -23,11 +23,11 @@ fun ApplicationExtension.configureBuildType() {
             signingConfig = signingConfigs.getByName(AppEnvironment.DEBUG.value)
         }
 
-        getByName(AppEnvironment.RELEASE.value) {
-            signingConfig = signingConfigs.getByName(AppEnvironment.RELEASE.value)
-            isMinifyEnabled = true
-            isShrinkResources = true
-        }
+        //getByName(AppEnvironment.RELEASE.value) {
+        //    signingConfig = signingConfigs.getByName(AppEnvironment.RELEASE.value)
+        //    isMinifyEnabled = true
+        //    isShrinkResources = true
+        //}
 
         all {  }
     }
