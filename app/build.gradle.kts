@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.arch.android.application)
     alias(libs.plugins.arch.ui.compose)
@@ -15,7 +16,6 @@ android {
 
     buildFeatures {
         buildConfig = true
-        compose = true
     }
 
     packaging {
@@ -29,6 +29,8 @@ android {
 dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.common)
+
+    implementation(projects.features.home)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.paging.compose)

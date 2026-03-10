@@ -23,3 +23,5 @@ include(":app")
 
 include(":core:common")
 include(":core:ui")
+
+include(":features:home")

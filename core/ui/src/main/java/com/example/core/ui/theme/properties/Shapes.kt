@@ -13,7 +13,7 @@ data class ArchShapes(
     val l: CornerBasedShape = RoundedCornerShape(16.dp),
     val xl: CornerBasedShape = RoundedCornerShape(24.dp),
 
-    val button: CornerBasedShape = RoundedCornerShape(40.dp)
+    val button: CornerBasedShape = RoundedCornerShape(24.dp)
 )
 
 val DefaultShapes = ArchShapes()
