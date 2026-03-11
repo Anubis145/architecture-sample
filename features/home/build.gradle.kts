@@ -11,6 +11,7 @@ android {
 
 dependencies {
     implementation(projects.core.common)
+    implementation(projects.core.ui)
     
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.appcompat)

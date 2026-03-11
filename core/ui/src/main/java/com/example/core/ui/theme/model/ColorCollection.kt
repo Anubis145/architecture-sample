@@ -7,5 +7,8 @@ typealias LightTheme = ColorCollection
 
 @Immutable
 data class ColorCollection(
-    val textColor: Color = Color.Black
+    val white: Color = Color.White,
+    val textColor: Color = Color.Black,
+    val errorRed: Color = Color.Red,
+    val warningBlue: Color = Color.Blue
 )
