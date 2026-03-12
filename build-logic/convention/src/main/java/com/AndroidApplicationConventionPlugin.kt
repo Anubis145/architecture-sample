@@ -32,7 +32,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 configureKotlinAndroid(this)
                 configureProductFlavors()
-                configureBuildType()
+                configureBuildType(rootDir)
                 configureAppSuffix()
                 initSigninConfig(rootDir)
             }

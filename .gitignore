@@ -6,3 +6,4 @@ build/
 .idea/
 local.properties
 /signinConfig
+books-api.properties
