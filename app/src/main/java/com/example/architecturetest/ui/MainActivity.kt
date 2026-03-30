@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -24,7 +23,7 @@ import com.example.core.ui.effects.snackbar.SnackbarEvent
 import com.example.core.ui.effects.snackbar.SnackbarViewModel
 import com.example.core.ui.utils.ObserveAsEvents
 import com.example.core.ui.theme.ArchTheme
-import com.example.features.home.HomeDependencies
+import com.example.features.home.ui.HomeDependencies
 import com.example.features.home.navgraphs.HomeGraph
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.generated.NavGraphs
