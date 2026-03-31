@@ -26,3 +26,8 @@ include(":core:ui")
 include(":core:network")
 
 include(":features:home")
+
+include(":domain:home")
+include(":domain:common")
+
+include(":data:common")

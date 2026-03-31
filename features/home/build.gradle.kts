@@ -12,6 +12,7 @@ android {
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.ui)
+    implementation(projects.domain.home)
     
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.appcompat)

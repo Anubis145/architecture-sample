@@ -12,7 +12,9 @@ class HomeReducer @Inject constructor(
         event: HomeEvent
     ): Pair<HomeState, HomeEffect?> {
         return when (event) {
-            else -> previousState to null
+            is HomeEvent.SearchValueChanged -> {
+                previousState.copy(searchValue = event.value) to null
+            }
         }
     }
 }

@@ -14,7 +14,8 @@ data class ArchShapes(
     val xl: CornerBasedShape = RoundedCornerShape(24.dp),
 
     val button: CornerBasedShape = RoundedCornerShape(24.dp),
-    val snackbar: CornerBasedShape = RoundedCornerShape(12.dp)
+    val snackbar: CornerBasedShape = RoundedCornerShape(12.dp),
+    val searchInputField: CornerBasedShape = RoundedCornerShape(20.dp)
 )
 
 val DefaultShapes = ArchShapes()

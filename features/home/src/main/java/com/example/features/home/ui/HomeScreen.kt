@@ -1,15 +1,19 @@
 package com.example.features.home.ui
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.core.ui.components.inputField.SearchInputField
+import com.example.core.ui.components.spacer.Spacer
+import com.example.features.home.R
 import com.example.features.home.navigation.HomeExternalNavigator
 import com.example.features.home.navigation.HomeNavGraph
 import com.example.features.home.ui.mvi.HomeState
@@ -45,12 +49,17 @@ fun HomeScreenContent(
     state: HomeState,
     intentListener: HomeIntent,
 ) {
-    Box(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "Home Screen"
+        Spacer(16.dp)
+        SearchInputField(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            value = state.searchValue,
+            onValueChange = {
+                intentListener.onSearchValueChanged(it)
+            },
+            hint = stringResource(R.string.search)
         )
     }
 }
@@ -58,7 +67,9 @@ fun HomeScreenContent(
 @Composable
 @Preview(showBackground = true)
 fun HomeScreenPreview() {
-    val intentListener = object : HomeIntent {}
+    val intentListener = object : HomeIntent {
+        override fun onSearchValueChanged(value: String) {}
+    }
 
     HomeScreenContent(
         intentListener = intentListener,

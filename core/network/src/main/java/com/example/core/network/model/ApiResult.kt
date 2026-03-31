@@ -6,7 +6,7 @@ import java.lang.reflect.Type
 
 sealed class ApiResult<T> {
     class Success<T: Any>(val data: T) : ApiResult<T>()
-    class Error<T: Any>(val code: Int, val message: String?) : ApiResult<T>()
+    class Error<T: Any>(val httpCode: Int, val message: String?) : ApiResult<T>()
     class ApiException<T: Any>(val throwable: Throwable) : ApiResult<T>() {
         override fun toString(): String = "ApiException: ${throwable.message}"
     }
