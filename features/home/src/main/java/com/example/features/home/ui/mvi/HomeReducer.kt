@@ -15,6 +15,12 @@ class HomeReducer @Inject constructor(
             is HomeEvent.SearchValueChanged -> {
                 previousState.copy(searchValue = event.value) to null
             }
+            is HomeEvent.SearchedBooks -> previousState.copy(
+                books = event.books,
+                isLoading = false
+            ) to null
+            HomeEvent.ShowLoading -> previousState.copy(isLoading = true) to null
+            HomeEvent.HideLoading -> previousState.copy(isLoading = false) to null
         }
     }
 }

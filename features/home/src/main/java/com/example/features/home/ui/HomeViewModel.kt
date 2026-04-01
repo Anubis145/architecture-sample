@@ -3,6 +3,8 @@ package com.example.features.home.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.core.common.mvi.BaseViewModel
+import com.example.domain.common.ArchResult
+import com.example.domain.common.DataError
 import com.example.domain.home.use_case.SearchBooksUseCase
 import com.example.features.home.ui.mvi.HomeEffect
 import com.example.features.home.ui.mvi.HomeEvent
@@ -16,6 +18,8 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+private val MIN_QUERY_CHARS = 2
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -38,8 +42,25 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             searchUserInput
                 .debounce(500L)
-                .collectLatest {
+                .collectLatest { query ->
+                    if (query.length > MIN_QUERY_CHARS) {
+                        sendEvent(HomeEvent.ShowLoading)
 
+                        when (val result = searchBooksUseCase(query)) {
+                            is ArchResult.Success -> {
+                                sendEvent(HomeEvent.SearchedBooks(result.data.books))
+                            }
+
+                            is ArchResult.Error -> {
+                                sendEvent(HomeEvent.HideLoading)
+                                when (result.error) {
+                                    DataError.NetworkError.NoInternetConnection ->
+                                        sendEffect(HomeEffect.ShowNoInternetSnackbar)
+                                    else -> sendEffect(HomeEffect.ShowSomethingWentWrongSnackbar)
+                                }
+                            }
+                        }
+                    }
                 }
         }
     }

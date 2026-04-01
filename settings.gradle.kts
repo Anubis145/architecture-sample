@@ -31,3 +31,4 @@ include(":domain:home")
 include(":domain:common")
 
 include(":data:common")
+include(":data:home")

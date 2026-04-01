@@ -11,5 +11,6 @@ data class ColorCollection(
     val textColor: Color = Color.Black,
     val errorRed: Color = Color.Red,
     val warningBlue: Color = Color.Blue,
-    val inputFieldGray: Color = Color.Gray
+    val inputFieldGray: Color = Color.Gray,
+    val gray: Color = Color.Gray,
 )

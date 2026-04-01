@@ -13,7 +13,9 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.ui)
     implementation(projects.domain.home)
+    implementation(projects.domain.common)
     
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.appcompat)
+    implementation(libs.coil.compose)
 }
