@@ -10,9 +10,9 @@ data class Book(
     @SerialName("title")
     val title: String,
     @SerialName("subtitle")
-    val subtitle: String,
+    val subtitle: String? = null,
     @SerialName("image")
-    val image: String,
+    val image: String? = null,
     @SerialName("authors")
     val authors: List<Author>,
     @SerialName("rating")

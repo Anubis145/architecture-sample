@@ -8,6 +8,6 @@ fun SearchBooksRs.toSearchBooks() : SearchBooks {
         available = available,
         number = number,
         offset = offset,
-        books = books.map { it.toBook() }
+        books = books.flatten().map { it.toBook() }
     )
 }

@@ -12,5 +12,5 @@ data class SearchBooksRs(
     @SerialName("offset")
     val offset: Int,
     @SerialName("books")
-    val books: List<Book>
+    val books: List<List<Book>>
 )

@@ -5,7 +5,8 @@ import com.example.domain.home.model.Book
 
 sealed interface HomeEvent : Reducer.Event {
     class SearchValueChanged(val value: String) : HomeEvent
-    class SearchedBooks(val books: List<Book>) : HomeEvent
+    class SearchResult(val books: List<Book>) : HomeEvent
+    object SearchResultIsEmpty : HomeEvent
     object ShowLoading : HomeEvent
     object HideLoading : HomeEvent
 }

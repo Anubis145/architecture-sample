@@ -15,7 +15,8 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,23 +42,27 @@ class HomeViewModel @Inject constructor(
     private fun observeSearchValueInput() {
         viewModelScope.launch {
             searchUserInput
+                .onEach {
+                    if (it.length > MIN_QUERY_CHARS) {
+                        sendEvent(HomeEvent.ShowLoading)
+                    } else {
+                        sendEvent(HomeEvent.SearchResultIsEmpty)
+                    }
+                }
+                .filter { it.length > MIN_QUERY_CHARS }
                 .debounce(500L)
                 .collectLatest { query ->
-                    if (query.length > MIN_QUERY_CHARS) {
-                        sendEvent(HomeEvent.ShowLoading)
+                    when (val result = searchBooksUseCase(query)) {
+                        is ArchResult.Success -> {
+                            sendEvent(HomeEvent.SearchResult(result.data.books))
+                        }
 
-                        when (val result = searchBooksUseCase(query)) {
-                            is ArchResult.Success -> {
-                                sendEvent(HomeEvent.SearchedBooks(result.data.books))
-                            }
-
-                            is ArchResult.Error -> {
-                                sendEvent(HomeEvent.HideLoading)
-                                when (result.error) {
-                                    DataError.NetworkError.NoInternetConnection ->
-                                        sendEffect(HomeEffect.ShowNoInternetSnackbar)
-                                    else -> sendEffect(HomeEffect.ShowSomethingWentWrongSnackbar)
-                                }
+                        is ArchResult.Error -> {
+                            sendEvent(HomeEvent.HideLoading)
+                            when (result.error) {
+                                DataError.NetworkError.NoInternetConnection ->
+                                    sendEffect(HomeEffect.ShowNoInternetSnackbar)
+                                else -> sendEffect(HomeEffect.ShowSomethingWentWrongSnackbar)
                             }
                         }
                     }
